@@ -43,10 +43,12 @@ nav.innerHTML='<div class="vidro"></div><svg aria-hidden="true"><defs>'+
 document.body.appendChild(nav);
 $(".itens",nav).innerHTML=ITENS.map(function(i){return '<a href="'+i[1]+'" data-id="'+i[0]+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+ICON[i[0]]+'</svg><span data-i="'+i[2]+'"></span></a>';}).join("");
 var NV={cx:0,alvo:0,ativo:null,raf:0};
-function caminho(W,H,cx){var y0=20,yt=1,bw=46,r=24;cx=Math.max(bw+r,Math.min(W-bw-r,cx));
-  return {cheio:"M"+r+","+y0+" L"+(cx-bw)+","+y0+" C"+(cx-bw*.45)+","+y0+" "+(cx-bw*.55)+","+yt+" "+cx+","+yt+" C"+(cx+bw*.55)+","+yt+" "+(cx+bw*.45)+","+y0+" "+(cx+bw)+","+y0+
-    " L"+(W-r)+","+y0+" Q"+W+","+y0+" "+W+","+(y0+r)+" L"+W+","+(H-r)+" Q"+W+","+H+" "+(W-r)+","+H+" L"+r+","+H+" Q0,"+H+" 0,"+(H-r)+" L0,"+(y0+r)+" Q0,"+y0+" "+r+","+y0+" Z",
-    arco:"M"+(cx-bw-34)+","+y0+" L"+(cx-bw)+","+y0+" C"+(cx-bw*.45)+","+y0+" "+(cx-bw*.55)+","+yt+" "+cx+","+yt+" C"+(cx+bw*.55)+","+yt+" "+(cx+bw*.45)+","+y0+" "+(cx+bw)+","+y0+" L"+(cx+bw+34)+","+y0,cx:cx};}
+function caminho(W,H,cx){var y0=20,yt=1,bw=38,R=24;cx=Math.max(bw+6,Math.min(W-bw-6,cx));
+  // perto das pontas o canto da barra fica mais fechado, para o arco caber exatamente sobre o primeiro e o último item
+  var rl=Math.max(6,Math.min(R,cx-bw)),rr=Math.max(6,Math.min(R,W-cx-bw));
+  var arco=" C"+(cx-bw*.45)+","+y0+" "+(cx-bw*.55)+","+yt+" "+cx+","+yt+" C"+(cx+bw*.55)+","+yt+" "+(cx+bw*.45)+","+y0+" "+(cx+bw)+","+y0;
+  return {cheio:"M"+rl+","+y0+" L"+(cx-bw)+","+y0+arco+" L"+(W-rr)+","+y0+" Q"+W+","+y0+" "+W+","+(y0+rr)+" L"+W+","+(H-R)+" Q"+W+","+H+" "+(W-R)+","+H+" L"+R+","+H+" Q0,"+H+" 0,"+(H-R)+" L0,"+(y0+rl)+" Q0,"+y0+" "+rl+","+y0+" Z",
+    arco:"M"+Math.max(rl,cx-bw-34)+","+y0+" L"+(cx-bw)+","+y0+arco+" L"+Math.min(W-rr,cx+bw+34)+","+y0,cx:cx};}
 function desenhaNav(){var W=nav.clientWidth,H=nav.clientHeight,p=caminho(W,H,NV.cx);
   $(".vidro",nav).style.clipPath="path('"+p.cheio+"')";$(".borda",nav).setAttribute("d",p.cheio);
   $$(".arco",nav).forEach(function(a){a.setAttribute("d",p.arco);});
