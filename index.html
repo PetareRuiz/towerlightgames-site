@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tower Light Games · AETHRION</title>
+<meta name="description" content="Tower Light Games é um estúdio indie brasileiro de jogos de fantasia para celular. Conheça AETHRION, nosso tower defense.">
+<link rel="icon" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:title" content="Tower Light Games · AETHRION">
+<meta property="og:description" content="Estúdio indie de jogos de fantasia para celular. Conheça AETHRION.">
+<meta property="og:image" content="https://towerlightgames.com/img/aethrion_icone.jpg">
+<style>
+@font-face{font-family:Cinzel;font-weight:700;font-display:swap;src:url(fonts/cinzel-latin-700-normal.ttf)}
+@font-face{font-family:Cinzel;font-weight:900;font-display:swap;src:url(fonts/cinzel-latin-900-normal.ttf)}
+@font-face{font-family:Figtree;font-weight:400;font-display:swap;src:url(fonts/figtree-latin-400-normal.woff2)}
+@font-face{font-family:Figtree;font-weight:600;font-display:swap;src:url(fonts/figtree-latin-600-normal.woff2)}
+@font-face{font-family:Figtree;font-weight:700;font-display:swap;src:url(fonts/figtree-latin-700-normal.woff2)}
+@font-face{font-family:Figtree;font-weight:800;font-display:swap;src:url(fonts/figtree-latin-800-normal.woff2)}
+</style>
+<style>
+:root{--navy:#0f2140;--deep:#081428;--gold:#d6a75a;--cream:#f1e6cc;--soft:#b9c2d4;--line:rgba(214,167,90,.28)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--deep);color:var(--cream);font:17px/1.6 Figtree,system-ui,sans-serif}
+a{color:var(--gold)}
+.top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:18px;padding:12px 22px;background:rgba(8,20,40,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top b{font:700 17px Cinzel,serif;letter-spacing:.08em;margin-right:auto}
+.top a{color:var(--soft);text-decoration:none;font-weight:600;font-size:15px}
+.top a:hover{color:var(--cream)}
+.lang{display:flex;gap:4px}
+.lang button{background:none;border:1px solid var(--line);color:var(--soft);border-radius:14px;padding:3px 10px;font:700 13px Figtree;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--gold);color:#1a1206;border-color:var(--gold)}
+.hero{min-height:82vh;display:grid;place-items:center;text-align:center;padding:60px 20px;background:radial-gradient(90% 60% at 50% 20%,#1d3a69 0%,var(--navy) 45%,var(--deep) 100%)}
+.hero img{width:min(460px,80vw)}
+.hero p{max-width:560px;margin:18px auto 0;color:var(--soft);font-size:19px}
+section{max-width:1060px;margin:0 auto;padding:80px 22px}
+.eb{font:800 14px Figtree;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+h2{font:900 clamp(34px,6vw,58px)/1.05 Cinzel,serif;margin:10px 0 16px;letter-spacing:.03em}
+h3{font:700 20px Cinzel,serif;margin:0 0 6px;color:var(--cream)}
+.jogo{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.jogo .icone{width:120px;border-radius:26px;box-shadow:0 10px 30px rgba(0,0,0,.5);margin-bottom:14px}
+.telas{display:flex;gap:10px;justify-content:center}
+.telas img{width:19%;border-radius:12px;border:3px solid #1b120a;box-shadow:0 12px 26px rgba(0,0,0,.5)}
+.telas img:nth-child(odd){transform:translateY(18px)}
+.feat{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+.feat div{border:1px solid var(--line);border-radius:14px;padding:18px;background:rgba(241,230,204,.04)}
+.feat b{display:block;font:900 34px/1 Cinzel,serif;color:var(--gold)}
+.feat span{color:var(--soft);font-size:15px}
+.breve{display:inline-block;margin-top:18px;border:1px solid var(--gold);color:var(--gold);border-radius:30px;padding:8px 18px;font-weight:700}
+.estudio{display:grid;grid-template-columns:200px 1fr;gap:34px;align-items:center;border-top:1px solid var(--line)}
+.estudio img{width:200px;border-radius:24px}
+footer{border-top:1px solid var(--line);padding:30px 22px;text-align:center;color:var(--soft);font-size:15px}
+footer a{margin:0 10px}
+[data-en]{display:none}
+html[lang="en"] [data-pt]{display:none}
+html[lang="en"] [data-en]{display:revert}
+@media (max-width:760px){.jogo,.estudio{grid-template-columns:1fr}.feat{grid-template-columns:1fr 1fr}.top a.nav{display:none}.estudio img{width:140px}}
+</style>
+</head>
+<body>
+<nav class="top">
+  <b>Tower Light Games</b>
+  <a class="nav" href="#aethrion">AETHRION</a>
+  <a class="nav" href="#estudio"><span data-pt>O estúdio</span><span data-en>Studio</span></a>
+  <div class="lang" role="group" aria-label="Idioma / Language"><button data-l="pt">PT</button><button data-l="en">EN</button></div>
+</nav>
+
+<header class="hero">
+  <div>
+    <img src="img/logo.png" alt="Tower Light Games">
+    <p data-pt>Um estúdio indie brasileiro de jogos de fantasia para celular.</p>
+    <p data-en>An indie studio from Brazil making fantasy games for mobile.</p>
+  </div>
+</header>
+
+<section id="aethrion" class="jogo">
+  <div>
+    <img class="icone" src="img/aethrion_icone.jpg" alt="Ícone do AETHRION">
+    <div class="eb"><span data-pt>Nosso primeiro jogo</span><span data-en>Our first game</span></div>
+    <h2>AETHRION</h2>
+    <p data-pt>Um tower defense de fantasia para celular. Construa e melhore suas torres, abra fendas no caminho e defenda o castelo das criaturas de cinco mundos, até enfrentar o Dragão Rei do Vulcão.</p>
+    <p data-en>A fantasy tower defense for mobile. Build and upgrade your towers, open rifts in the path and defend the castle from the creatures of five worlds, all the way to the Volcano Dragon King.</p>
+    <p data-pt>Jogue a Campanha em três dificuldades ou desenhe a sua própria trilha no Modo Livre. Disponível em português, inglês, espanhol, francês, alemão e italiano.</p>
+    <p data-en>Play the Campaign on three difficulty levels or draw your own path in Free Mode. Available in Portuguese, English, Spanish, French, German and Italian.</p>
+    <span class="breve"><span data-pt>Em breve para Android e iPhone</span><span data-en>Coming soon to Android and iPhone</span></span>
+  </div>
+  <div class="telas">
+    <img src="img/tela1.jpg" alt=""><img src="img/tela2.jpg" alt=""><img src="img/tela3.jpg" alt=""><img src="img/tela4.jpg" alt=""><img src="img/tela5.jpg" alt="">
+  </div>
+</section>
+<section style="padding-top:0">
+  <div class="feat">
+    <div><b>5</b><span data-pt>mundos: Floresta, Lago, Geleira, Deserto e Vulcão</span><span data-en>worlds: Forest, Lake, Glacier, Desert and Volcano</span></div>
+    <div><b>50</b><span data-pt>ondas de inimigos</span><span data-en>enemy waves</span></div>
+    <div><b>10</b><span data-pt>chefões e subchefes com poderes próprios</span><span data-en>bosses and mini-bosses with their own powers</span></div>
+    <div><b>6</b><span data-pt>idiomas</span><span data-en>languages</span></div>
+  </div>
+</section>
+
+<section id="estudio" class="estudio">
+  <img src="img/tlg_icone.png" alt="Tower Light Games">
+  <div>
+    <div class="eb"><span data-pt>O estúdio</span><span data-en>The studio</span></div>
+    <h3 style="font-size:28px">Tower Light Games</h3>
+    <p data-pt>Fundada em 2026 por Petare, empreendedor há mais de 30 anos, a Tower Light Games cria jogos de fantasia para celular: fáceis de começar e cheios de estratégia.</p>
+    <p data-en>Founded in 2026 by Petare, an entrepreneur for over 30 years, Tower Light Games makes fantasy games for mobile: easy to pick up and full of strategy.</p>
+    <p><a href="https://www.instagram.com/towerlightgames" rel="noopener">Instagram</a> · <a href="mailto:contato@towerlightgames.com">contato@towerlightgames.com</a></p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Tower Light Games ·
+  <a href="privacidade.html" data-pt>Política de privacidade</a><a href="privacy.html" data-en>Privacy policy</a>
+</footer>
+<script>
+(function(){
+  var saved=null;try{saved=localStorage.getItem("tlg_lang");}catch(e){}
+  var nav=(navigator.language||"pt").slice(0,2).toLowerCase();
+  function set(l){document.documentElement.lang=l==="en"?"en":"pt-BR";document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.l===l);});try{localStorage.setItem("tlg_lang",l);}catch(e){}}
+  set(saved||(nav==="pt"?"pt":"en"));
+  document.querySelectorAll(".lang button").forEach(function(b){b.onclick=function(){set(b.dataset.l);};});
+})();
+</script>
+</body>
+</html>
