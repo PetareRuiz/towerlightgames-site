@@ -80,6 +80,7 @@ function aplicar(){
   if(document.body.dataset.titulo)document.title=t(document.body.dataset.titulo)+" · Tower Light Games";
   if(PAG==="manual")Manual.render();
   if(PAG==="tutorial")Tutorial.render();
+  document.dispatchEvent(new Event("tlg-idioma"));
   requestAnimationFrame(function(){NV.cx=NV.alvo=centroDe(NV.ativo);desenhaNav();});}
 
 /* ---------- manual: cards gerados pelo próprio jogo ---------- */
@@ -110,5 +111,13 @@ var Tutorial={render:function(){var P=window.I18N.TUT,L=$("#passos");
   L.innerHTML=P.map(function(p,i){return '<article class="passo"><img class="tela" loading="lazy" width="390" height="844" src="img/tutorial/'+LANG+'_'+(i+1)+'.webp" alt="">'+
     '<div><div class="num">'+t("tut.passo")+' '+(i+1)+'</div><h3>'+t("t"+(i+1))+'</h3>'+p[IDX[LANG]].map(function(x){return "<p>"+x+"</p>";}).join("")+'</div></article>';}).join("");}};
 
+/* prévia em vídeo: toca sem som quando aparece na tela; o botão liga o som */
+var V=document.getElementById("previa");
+if(V){var SB=document.getElementById("somv");var calmo=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var rot=function(){SB.setAttribute("aria-label",t(V.muted?"som.on":"som.off"));SB.title=SB.getAttribute("aria-label");SB.setAttribute("aria-pressed",!V.muted);};
+  SB.onclick=function(){V.muted=!V.muted;if(!V.muted)V.play().catch(function(){});rot();};rot();
+  if("IntersectionObserver" in window&&!calmo)new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)V.play().catch(function(){});else V.pause();});},{threshold:.35}).observe(V);
+  else if(calmo){V.controls=true;}
+  document.addEventListener("tlg-idioma",rot);}
 aplicar();
 })();
