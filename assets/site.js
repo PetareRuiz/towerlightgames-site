@@ -43,7 +43,7 @@ nav.innerHTML='<div class="vidro"></div><svg aria-hidden="true"><defs>'+
 document.body.appendChild(nav);
 $(".itens",nav).innerHTML=ITENS.map(function(i){return '<a href="'+i[1]+'" data-id="'+i[0]+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+ICON[i[0]]+'</svg><span data-i="'+i[2]+'"></span></a>';}).join("");
 var NV={cx:0,alvo:0,ativo:null,raf:0};
-function caminho(W,H,cx){var y0=20,yt=1,bw=38,R=24;cx=Math.max(bw+6,Math.min(W-bw-6,cx));
+function caminho(W,H,cx){var y0=20,yt=1,bw=38,R=24;cx=Math.max(bw+2,Math.min(W-bw-2,cx));
   // perto das pontas o canto da barra fica mais fechado, para o arco caber exatamente sobre o primeiro e o último item
   var rl=Math.max(6,Math.min(R,cx-bw)),rr=Math.max(6,Math.min(R,W-cx-bw));
   var arco=" C"+(cx-bw*.45)+","+y0+" "+(cx-bw*.55)+","+yt+" "+cx+","+yt+" C"+(cx+bw*.55)+","+yt+" "+(cx+bw*.45)+","+y0+" "+(cx+bw)+","+y0;
@@ -55,7 +55,7 @@ function desenhaNav(){var W=nav.clientWidth,H=nav.clientHeight,p=caminho(W,H,NV.
   var g=$("#nvBrilho");g.setAttribute("x1",p.cx-90);g.setAttribute("x2",p.cx+90);
   var l=$("#nvLuz");l.setAttribute("cx",p.cx);l.setAttribute("cy",26);
   var e=$(".luz",nav);e.setAttribute("cx",p.cx);e.setAttribute("cy",26);e.setAttribute("rx",48);e.setAttribute("ry",30);}
-function centroDe(id){var a=$('[data-id="'+id+'"]',nav);if(!a)return nav.clientWidth/2;return a.offsetLeft+a.offsetWidth/2;}
+function centroDe(id){var a=$('[data-id="'+id+'"]',nav);if(!a)return nav.clientWidth/2;var ra=a.getBoundingClientRect(),rn=nav.getBoundingClientRect();return (ra.left-rn.left)+ra.width/2;}
 function ativa(id,instant){if(NV.ativo===id&&!instant)return;NV.ativo=id;$$(".itens a",nav).forEach(function(a){a.classList.toggle("on",a.dataset.id===id);if(a.dataset.id===id)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
   NV.alvo=centroDe(id);cancelAnimationFrame(NV.raf);
   if(instant||matchMedia("(prefers-reduced-motion: reduce)").matches){NV.cx=NV.alvo;desenhaNav();return;}
